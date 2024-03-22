@@ -24,7 +24,7 @@ ary.sort()
 first = ary[n - 1]                  # 가장 큰 수
 second = ary[n - 2]                # 두번째로 큰 수
 
-count = m//(k+1) * k + m % (k + 1)
+count = m//(k+1) * k + m % (k + 1) # 가장 큰 수가 더해지는 횟수 구하기
 
 result = 0
 result += (count) * first            # 가장 큰 수 더하기
