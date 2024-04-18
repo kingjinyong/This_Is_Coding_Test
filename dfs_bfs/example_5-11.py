@@ -27,7 +27,7 @@ def bfs(x, y):
             # 미로 찾기 공간을 벗어난 경우 무시
             if nx < 0 or ny < 0 or nx >= n or ny >= m:
                 continue
-            # 벽인 경우 무시
+            # 괴물이 있는 부분인 경우 무시
             if graph[nx][ny] == 0:
                 continue
             # 해당 노드를 처음 방문하는 경우에만 최단 거리 기록
