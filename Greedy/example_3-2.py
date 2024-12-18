@@ -1,33 +1,60 @@
-# ------------- 단순하게 푸는 답안 ----------------
-# N, M, K = map(int, input().split())
-# ary = list(map(int, input().split()))
-# ary.sort(reverse=True)
-# count = 0
-# answer = 0
-#
-# while True:                     # 무한 반복
-#     for i in range(K):          # 가장 큰 수 K번 더해주기
-#         if M == 0:              # 총 주어진 횟수 M이 0이 된다면 반복문 종료.
-#             break
-#         answer += ary[0]        # 가장 큰 수 더해주기
-#         M -= 1                  # 더해줬으니 횟수 차감
-#     if M == 0:                  # 주어진 횟수가 0이 된다면 반복문 종료
-#         break
-#     answer += ary[1]            # 두번째로 큰 수 더해주기
-#     M -= 1                      # 더해줬으니 횟수 차감
-# print(answer)
-
-# ---------- 수학적 아이디어로 풀 수 있다고 함... -----------
+# 내가 푼 답
 n, m, k = map(int, input().split())
-ary = list(map(int, input().split()))
-ary.sort()
-first = ary[n - 1]                  # 가장 큰 수
-second = ary[n - 2]                # 두번째로 큰 수
 
-count = m//(k+1) * k + m % (k + 1) # 가장 큰 수가 더해지는 횟수 구하기
+ary = list(map(int, input().split()))
+
+ary.sort(reverse=True)
 
 result = 0
-result += (count) * first            # 가장 큰 수 더하기
-result += (m - count) * second      # 두 번째 큰 수 더하기
+cnt = 0
 
-print(result)                       # 최종 답안 출력
+for i in range(m):
+    cnt += 1
+    if cnt != k:
+        result += ary[0]
+    elif cnt == k:
+        result += ary[1]
+        cnt = 0
+
+print(result)
+
+# 책 답안
+n, m, k = map(int, input().split())
+
+data = list(map(int, input().split()))
+
+data.sort()
+first = data[n - 1]
+second = data[n - 2]
+
+result = 0
+
+while True:
+    for i in range(k):
+        if m == 0:
+            break
+        result += first
+        m -= 1
+    if m == 0:
+        break
+    result += second
+    m -= 1
+print(result)
+
+# 책 답안 2(수식 사용)
+n, m, k = map(int, input().split())
+
+data = list(map(int, input().split()))
+
+data.sort()
+first = data[n - 1]
+second = data[n - 2]
+
+first_count = int(m // (k + 1)) * k
+first_count += m % (k + 1)
+
+result = 0
+result += (first_count) * first  # 가장 큰 수 더해주기
+result += (m - first_count) * second  # 두 번째로 큰 수 더하기
+
+print(result)
