@@ -1,19 +1,41 @@
+# 내 답안
 n = int(input())
 
-work = list(map(str, input().split()))
+work_list = list(map(str, input().split()))
 
-travler = [1, 1]
+worker = [1, 1]
 
-print(travler, work)
+for w in work_list:
+    if w == 'R' and worker[1] < n:
+        worker[1] += 1
+    if w == 'L' and worker[1] > 1:
+        worker[1] -= 1
+    if w == 'D' and worker[0] < n:
+        worker[0] += 1
+    if w == 'U' and worker[0] > 1:
+        worker[0] -= 1
+    print(worker)
+print(*worker)
 
-for i in work:
-    if i == 'L' and (travler[1] - 1 >= 1):
-        travler[1] -= 1
-    if i == 'R' and (travler[1] + 1 <= 5):
-        travler[1] += 1
-    if i == 'U' and (travler[0] - 1 >= 1):
-        travler[0] -= 1
-    if i == 'D' and (travler[0] + 1 <= 5):
-        travler[0] += 1
+# 책 답안1
 
-print(travler[0], travler[1])
+n = int(input())
+x, y = 1, 1
+plans = input().split()
+
+work_type = ['R', 'L', 'D', 'U']
+
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+for plan in plans:
+    for i in range(len(work_type)):
+
+        if plan == work_type[i]:
+            nx = x + dx[i]
+            ny = y + dy[i]
+
+        if nx < 1 or ny < 1 or nx > n or ny > n:
+            continue
+        x, y = nx, ny
+
+print(x, y)
